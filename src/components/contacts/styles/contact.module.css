@@ -1,0 +1,76 @@
+.contactContainer {
+    margin-bottom: 25px;
+    padding: 35px 20px;
+
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 8px 0px rgba(176, 176, 176, 0.2);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.infoContainer {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.name {
+    font-size: 1em;
+    font-weight: bold;
+
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.email, .phone {
+    display: flex;
+    align-items: flex-start;
+    
+    margin-bottom: 5px;
+}
+
+.labelIcon {
+    color: #CAC8D3;
+    margin-right: 10px;
+}
+
+.buttonContainer {
+    margin: 15px 0 10px;
+}
+
+.buttonIcon {
+    color: var(--button-color);
+}
+
+.buttonIcon:hover {
+    opacity: .7;
+    cursor: pointer;
+}
+
+.buttonIcon:nth-child(1) {
+    margin-right: 30px;
+}
+
+@media (max-width: 768px) {
+    .contactContainer {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+
+    .infoContainer {
+        flex-direction: column;
+        align-items: flex-start;
+
+        width: 100%;
+    }
+
+    .buttonContainer {
+        width: 100%;
+        margin: 0 0 10px;
+
+        text-align: right;
+    }
+}

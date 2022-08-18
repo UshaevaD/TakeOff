@@ -1,0 +1,29 @@
+.popup {
+    min-width: 450px;
+    color: var(--font-color);
+}
+
+.popupContent {
+    padding: 0 30px 33px;
+    text-align: center;
+}
+
+.popupHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 30px 0 20px;
+}
+
+.popupCloseBtn:focus {
+    box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .popup {
+        width: 100%;
+        min-width: auto;
+        margin: 0 auto;
+    }  
+}

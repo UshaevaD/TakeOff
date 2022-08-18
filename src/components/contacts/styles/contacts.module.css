@@ -1,0 +1,52 @@
+.sectionContainer {
+    display: flex;
+    flex-direction: column;
+
+    height: 100vh;
+}
+
+.sectionBody {
+    width: 100%;
+    max-width: 1200px;
+
+    padding: 0 20px;
+    margin: 40px auto 60px;
+
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionBodySidebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 10px 0 30px;
+}
+.sectionSidebarEmpty {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sectionBodyContent {
+    flex-grow: 2;
+}
+
+.sectionBodyEmpty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addBtnIcon {
+    width: 60px;
+    height: 60px;
+}
+
+@media (max-width: 768px) {
+    .sectionBodySidebar {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+}

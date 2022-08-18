@@ -1,0 +1,51 @@
+.registerLink {
+    color: var(--font-color);
+    margin: 0 auto;
+}
+
+.registerLink:hover {
+    color: #262424;
+    text-decoration: underline;
+
+    cursor: pointer;
+    opacity: 1;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+
+    background-color: var(--background-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    width: 390px;
+    padding: 60px 30px 33px;
+    margin: 0 auto;
+
+    background: #fff;
+    box-shadow: 0 5px 10px 0 rgb(0 0 0 / 10%);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.formInput {
+    margin-bottom: 30px;
+}
+
+.formSubmitButton {
+    width: 200px;
+    margin: 40px auto;
+}

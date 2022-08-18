@@ -1,0 +1,60 @@
+.label {
+    display: block;
+    margin-bottom: 10px;
+
+    color: var(--font-color);
+    text-align: left;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    height: 45px;
+    min-width: 0;
+
+    padding: 10px 50px 10px 15px;
+
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--font-color);
+
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+}
+
+.input:focus-visible {
+    outline: none;
+}
+
+.input.error {
+    border-color: var(--error-color);
+}
+
+.errorMessage {
+    margin: 5px;
+    height: 24px;
+
+    color: var(--error-color);
+}
+
+.inputWrapper {
+    display: flex;
+    align-items: center;
+
+    position: relative;
+}
+
+.inputIcon {
+    position: absolute;
+    right: 15px;
+
+    color: #999;
+}
+
+.inputIcon:hover {
+    cursor: pointer;
+
+    color: #787878;
+}

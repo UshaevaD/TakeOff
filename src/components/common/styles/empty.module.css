@@ -1,0 +1,24 @@
+.emptyContainer {
+    color: var(--empty-font-color);
+    text-align: center;
+}
+
+.emptyText {
+    font-weight: bold;
+    font-size: 25px;
+
+    margin-bottom: 10px;
+}
+
+.emptyContainer > img {
+    width: 100%;
+    max-width: 320px;
+
+    margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+    .emptyContainer > img {
+        max-width: initial;
+    }
+}
