@@ -4,7 +4,7 @@ import { Dispatch } from 'react';
 import { ContactAction, IContact } from './contactTypes';
 import { toast } from 'react-toastify';
 
-const API_URL = 'http://localhost:3000'
+const API_URL = 'http://localhost:3001'
 
 export const fetchContacts = (query: string = '') => {
     return async (dispatch: Dispatch<ContactAction>) => {

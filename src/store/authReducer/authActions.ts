@@ -4,7 +4,7 @@ import { Dispatch } from 'react';
 import { AuthAction, IUser } from './authTypes';
 import { toast } from 'react-toastify';
 
-const API_URL = 'http://localhost:3000'
+const API_URL = 'http://localhost:3001'
 
 export const loginUser = (user: IUser) => {
   return async (dispatch: Dispatch<AuthAction>) => {
