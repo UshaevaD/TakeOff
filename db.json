@@ -1,18 +1,16 @@
 {
   "contacts": [
     {
-      "id": 1,
-      "name": "Leanne Graham",
-      "username": "Bret",
       "email": "Sincere@april.biz",
-      "phone": "1-770-736-8031 x56442"
+      "name": "Leanne Graham",
+      "phone": "1-770-736-8031 x56442",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "Ervin Howell",
-      "username": "Antonette",
       "email": "Shanna@melissa.tv",
-      "phone": "010-692-6593 x09125"
+      "name": "Ervin Howell",
+      "phone": "010-692-6593 x09125",
+      "id": 2
     },
     {
       "id": 3,
@@ -69,21 +67,6 @@
       "username": "Moriah.Stanton",
       "email": "Rey.Padberg@karina.biz",
       "phone": "024-648-3804"
-    },
-    {
-      "name": "Test",
-      "email": "test@example.com",
-      "phone": "11121212",
-      "id": 14
-    },
-    {
-      "name": "Дарья Ушаева",
-      "email": "ushdaush@gmail.com",
-      "phone": "12123123",
-      "id": 15
-    },
-    {
-      "id": 16
     }
   ],
   "users": [
@@ -96,36 +79,6 @@
       "email": "test@example.com",
       "password": "$2a$10$2aMgnUfotNvnh/bQuoqcpekoJifeHB0NVPcr7Aqyt/.qGqzCkVhsS",
       "id": "vGlR3RY"
-    },
-    {
-      "email": "test3@example.com",
-      "password": "$2a$10$i2XGoZ1fRGBHWU5QJXhzletqVL7PCD//xOlKsWHYSW.HseJ4QgrUK",
-      "id": "WSZKCQI"
-    },
-    {
-      "email": "test6@example.com",
-      "password": "$2a$10$ECGu8gBhlVtBljWApIAQeuEp/cvD1g5uCslGSAI8et7RES6Kvl2.a",
-      "id": "nYMIIZH"
-    },
-    {
-      "email": "test89@example.com",
-      "password": "$2a$10$DhW/pDNDDHyBCuQA7qRR/.WiVZsWj/htoh42Iag8/z484YYfljuBy",
-      "id": "5gmUVYU"
-    },
-    {
-      "email": "dushaeva@cs-cart.com",
-      "password": "$2a$10$bTosSFcQsi4j6.JFvu/P7O5B1ChWfp3pTDJ1MWV63zgMhNnCcBke.",
-      "id": "zWzdbUu"
-    },
-    {
-      "email": "ushdaush23@gmail.com",
-      "password": "$2a$10$kKccwKSqWELo8ZiPwyaACOXiSP5Hz14mdVf7hmZfMSkTU59QNrHb.",
-      "id": "lMKP69C"
-    },
-    {
-      "email": "newContact@example.com",
-      "password": "$2a$10$Aspp/ZIOrUfgAS7D/ufKAuegjF1VRnDnzLTiSgBxjNU7DcTz6DLAW",
-      "id": "PiD7IxO"
     }
   ]
 }

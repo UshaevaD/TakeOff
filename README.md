@@ -4,6 +4,7 @@
 
 ## Используемые технологии
 
+- Node.js - v16.16.0
 - React.js
 - Redux
 - JavaScript

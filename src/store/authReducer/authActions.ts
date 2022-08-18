@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import * as actions from './authActionCreators';
 import { Dispatch } from 'react';
 import { AuthAction, IUser } from './authTypes';
@@ -15,9 +15,14 @@ export const loginUser = (user: IUser) => {
       
       localStorage.setItem('auth_token', response.data.accessToken)
       dispatch (actions.successLogin(response.data.user, response.data.accessToken))
-    } catch(error: any) {
+    } catch (error) {
       dispatch(actions.loginError())
-      toast.error(error.response.data)
+
+      if (error instanceof AxiosError) {
+        toast.error(error?.response?.data)
+      } else {
+        console.log(error)
+      }
     }
   }
 }
@@ -45,12 +50,17 @@ export const registerUser = (user: IUser) => {
     try {
       dispatch(actions.requestRegister())
 
-      const response = await axios.post(`${API_URL}/register`, { email: user.email, password: user.password })
+      await axios.post(`${API_URL}/register`, { email: user.email, password: user.password })
       dispatch (actions.successRegister())
       toast.success('Registration was successful')
-    } catch(error: any) {
-      toast.error(error.response.data)
+    } catch(error) {
       dispatch (actions.errorRegister())
+
+      if (error instanceof AxiosError) {
+        toast.error(error?.response?.data)
+      } else {
+        console.log(error)
+      }
     }
   }
 }

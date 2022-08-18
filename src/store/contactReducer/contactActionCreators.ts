@@ -10,7 +10,7 @@ export const fetchContactsSuccess = (contacts: IContact[]): ContactAction => ({
     contacts
 })
 
-export const fetchContactsFailure = (message: string): ContactAction => ({
+export const fetchContactsFailure = (): ContactAction => ({
     type: ContactActionTypes.FETCH_CONTACT_FAILURE
 })
 

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import * as actions from './contactActionCreators';
 import { Dispatch } from 'react';
 import { ContactAction, IContact } from './contactTypes';
@@ -16,9 +16,14 @@ export const fetchContacts = (query: string = '') => {
 
         dispatch (actions.fetchContactsSuccess(response.data))
   
-      } catch(err: any) {
-        dispatch(actions.fetchContactsFailure(err.response.data))
-        toast.error('Error getting list.')
+      } catch(error) {
+        dispatch(actions.fetchContactsFailure())
+
+        if (error instanceof AxiosError) {
+            toast.error('Error getting list.')
+        } else {
+            console.log(error)
+        }
       }
     }
 }
@@ -26,7 +31,7 @@ export const fetchContacts = (query: string = '') => {
 export const addContactAction = (contact: IContact) => {
     return async (dispatch: Dispatch<ContactAction>) => {
         try {
-            const response = await axios.post(`${API_URL}/contacts`, {})
+            const response = await axios.post(`${API_URL}/contacts`, {...contact})
 
             if (response.data?.id) {
                 dispatch(actions.addContact(response.data))
@@ -34,8 +39,12 @@ export const addContactAction = (contact: IContact) => {
             } else {
                 toast.error('Failed to Add contact.')
             }
-        } catch(err: any) {
-            toast.error('Failed to Add contact.')
+        } catch(error) {
+            if (error instanceof AxiosError) {
+                toast.error('Failed to Add contact.')
+            } else {
+                console.log(error)
+            }
         }
     }
 }
@@ -47,8 +56,12 @@ export const deleteContactAction = (contact: IContact) => {
 
             dispatch (actions.deleteContact(contact))
             toast.success('Success to Delete contact.')
-        } catch(err: any) {
-            toast.error('Failed to Delete contact.')
+        } catch(error) {
+            if (error instanceof AxiosError) {
+                toast.error('Failed to Delete contact.')
+            } else {
+                console.log(error)
+            }
         }
     }
 }
@@ -58,16 +71,16 @@ export const updateContactAction = (contact: IContact) => {
         dispatch (actions.updateContact(contact))
 
         try {
-            const response = await axios.put(`${API_URL}/contacts/${contact.id}`, { ...contact})
+            await axios.put(`${API_URL}/contacts/${contact.id}`, {email: contact.email, name: contact.name, phone: contact.phone})
 
-            if (response.data?.id) {
-                dispatch (actions.updateContact(contact))
-                toast.success('Success to Update contact.')
-            } else {
+            dispatch (actions.updateContact(contact))
+            toast.success('Success to Update contact.')
+        } catch(error) {
+            if (error instanceof AxiosError) {
                 toast.error('Failed to Update contact.')
+            } else {
+                console.log(error)
             }
-        } catch(err: any) {
-            toast.error('Failed to Update contact.')
         }
     }
 }
