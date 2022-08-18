@@ -28,5 +28,5 @@ npm start
 ```
 4. В новом терминале запустите сервер командой
 ```bash
-json-server ./db.json -m ./node_modules/json-server-auth
+json-server db.json -m ./node_modules/json-server-auth -p 3001
 ```
