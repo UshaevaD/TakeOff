@@ -28,3 +28,13 @@ export const updateContact = (contact: IContact): ContactAction => ({
     type: ContactActionTypes.CONTACT_UPDATE,
     contact
 })
+
+export const setTotalCountPage = (total: number): ContactAction => ({
+    type: ContactActionTypes.SET_TOTAL_PAGE,
+    total
+})
+
+export const setCurrentPage = (page: number): ContactAction => ({
+    type: ContactActionTypes.SET_CURRENT_PAGE,
+    page
+})

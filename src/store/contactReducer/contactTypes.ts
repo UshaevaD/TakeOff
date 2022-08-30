@@ -10,6 +10,10 @@ export interface IContact {
 export interface IContactState {
   isFetching: boolean
   contacts: Array<IContact>
+  totalCount: number
+  perPage: number
+  current: number
+  countPages: number
 }
 
 export type ContactState = {
@@ -45,6 +49,16 @@ export type ContactDeleteAction = {
   contact: IContact
 }
 
+export type ContactSetTotalAction = {
+  type: ContactActionTypes.SET_TOTAL_PAGE
+  total: number
+}
+
+export type ContactSetCurrentPageAction = {
+  type: ContactActionTypes.SET_CURRENT_PAGE
+  page: number
+}
+
 export type ContactAction =
   | FetchContactRequestAction | FetchContactSuccessAction | FetchContactFailureAction
-  | ContactAddAction | ContactUpdateAction | ContactDeleteAction
+  | ContactAddAction | ContactUpdateAction | ContactDeleteAction | ContactSetTotalAction | ContactSetCurrentPageAction

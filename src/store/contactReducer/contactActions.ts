@@ -6,32 +6,34 @@ import { toast } from 'react-toastify';
 
 const API_URL = 'http://localhost:3001'
 
-export const fetchContacts = (query: string = '') => {
+export const fetchContacts = (page: number, perPage: number, query: string = '') => {
     return async (dispatch: Dispatch<ContactAction>) => {
-      try {
-        dispatch(actions.fetchContactsRequest())
+        try {
+            dispatch(actions.fetchContactsRequest())
 
-        const searchQuery = query.length ? `?q=${query}` : ``
-        const response = await axios.get(`${API_URL}/contacts${searchQuery}`)
+            const paginationParams = `?_page=${page}&_limit=${perPage}`
+            const searchQuery = query.length ? `&q=${query}` : ``
+            const response = await axios.get(`${API_URL}/contacts${paginationParams}${searchQuery}`)
 
-        dispatch (actions.fetchContactsSuccess(response.data))
-  
-      } catch(error) {
-        dispatch(actions.fetchContactsFailure())
+            dispatch(actions.fetchContactsSuccess(response.data))
+            dispatch(actions.setTotalCountPage(+response.headers['x-total-count']))
+            dispatch(actions.setCurrentPage(page))
+        } catch (error) {
+            dispatch(actions.fetchContactsFailure())
 
-        if (error instanceof AxiosError) {
-            toast.error('Error getting list.')
-        } else {
-            console.log(error)
+            if (error instanceof AxiosError) {
+                toast.error('Error getting list.')
+            } else {
+                console.log(error)
+            }
         }
-      }
     }
 }
 
 export const addContactAction = (contact: IContact) => {
     return async (dispatch: Dispatch<ContactAction>) => {
         try {
-            const response = await axios.post(`${API_URL}/contacts`, {...contact})
+            const response = await axios.post(`${API_URL}/contacts`, { ...contact })
 
             if (response.data?.id) {
                 dispatch(actions.addContact(response.data))
@@ -39,7 +41,7 @@ export const addContactAction = (contact: IContact) => {
             } else {
                 toast.error('Failed to Add contact.')
             }
-        } catch(error) {
+        } catch (error) {
             if (error instanceof AxiosError) {
                 toast.error('Failed to Add contact.')
             } else {
@@ -54,9 +56,9 @@ export const deleteContactAction = (contact: IContact) => {
         try {
             await axios.delete(`${API_URL}/contacts/${contact.id}`)
 
-            dispatch (actions.deleteContact(contact))
+            dispatch(actions.deleteContact(contact))
             toast.success('Success to Delete contact.')
-        } catch(error) {
+        } catch (error) {
             if (error instanceof AxiosError) {
                 toast.error('Failed to Delete contact.')
             } else {
@@ -68,14 +70,14 @@ export const deleteContactAction = (contact: IContact) => {
 
 export const updateContactAction = (contact: IContact) => {
     return async (dispatch: Dispatch<ContactAction>) => {
-        dispatch (actions.updateContact(contact))
+        dispatch(actions.updateContact(contact))
 
         try {
-            await axios.put(`${API_URL}/contacts/${contact.id}`, {email: contact.email, name: contact.name, phone: contact.phone})
+            await axios.put(`${API_URL}/contacts/${contact.id}`, { email: contact.email, name: contact.name, phone: contact.phone })
 
-            dispatch (actions.updateContact(contact))
+            dispatch(actions.updateContact(contact))
             toast.success('Success to Update contact.')
-        } catch(error) {
+        } catch (error) {
             if (error instanceof AxiosError) {
                 toast.error('Failed to Update contact.')
             } else {

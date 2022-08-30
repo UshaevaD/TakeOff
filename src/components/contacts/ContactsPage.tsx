@@ -15,6 +15,7 @@ import Contact from './Contact';
 import SearchForm from '../common/SearchForm';
 import Button from '../common/Button';
 import EmptyList from '../common/Empty';
+import { Pagination } from '../common/Pagination';
 
 const ContactsPage: React.FC = () => {
     const navigate = useNavigate()
@@ -22,7 +23,12 @@ const ContactsPage: React.FC = () => {
 
     const isAuth = useSelector<RootState, boolean>(state => state.auth.isAuth, shallowEqual) 
     const isFetching = useSelector<RootState, boolean>(state => state.contacts.isFetching, shallowEqual) 
-    const contacts = useSelector<RootState, IContact[]>(state => state.contacts.contacts, shallowEqual) 
+    const contacts = useSelector<RootState, IContact[]>(state => state.contacts.contacts, shallowEqual)
+
+    const current = useSelector<RootState, number>(state => state.contacts.current, shallowEqual) 
+    const perPage = useSelector<RootState, number>(state => state.contacts.perPage, shallowEqual)
+    const totalCount = useSelector<RootState, number>(state => state.contacts.totalCount, shallowEqual)
+    const countPages = useSelector<RootState, number>(state => state.contacts.countPages, shallowEqual)
 
     const [selectedContact, setSelectedContact] = useState<IContact | null>(null)
     const [isOpen, setIsOpen] = useState(false)
@@ -33,7 +39,7 @@ const ContactsPage: React.FC = () => {
         }
 
         if (!contacts.length && !isFetching) {
-            dispatch(fetchContacts())
+            dispatch(fetchContacts(current, perPage))
         } 
     }, [])
 
@@ -46,7 +52,11 @@ const ContactsPage: React.FC = () => {
         setIsOpen(true)
     }
 
-    const fetchContact = useCallback((query: string) => dispatch(fetchContacts(query)), [dispatch])
+    const searchContact = (query: string) => {
+        fetchContact(1, perPage, query)
+    }
+
+    const fetchContact = useCallback((page: number, limit: number, query?: string) => dispatch(fetchContacts(page, limit, query)), [dispatch])
     const addContact = useCallback((contact: IContact) => dispatch(addContactAction(contact)), [dispatch])
     const updateContact = useCallback((contact: IContact) => dispatch(updateContactAction(contact)), [dispatch])
     const deleteContact = useCallback((contact: IContact) => dispatch(deleteContactAction(contact)), [dispatch])
@@ -56,6 +66,14 @@ const ContactsPage: React.FC = () => {
             <Header />
 
             <div className={s.sectionBody}>
+                <Pagination 
+                    totalCount={totalCount} 
+                    perPage={perPage} 
+                    current={current}
+                    countPages={countPages} 
+                    onChangePage={fetchContact}
+                />
+
                 <div className={`${s.sectionBodySidebar} ${!contacts.length && s.sectionSidebarEmpty}`}>
                     <Button 
                         type={ButtonType.Button}
@@ -65,7 +83,7 @@ const ContactsPage: React.FC = () => {
                         classNameBtn={s.addBtnIcon}
                     />
                     <SearchForm 
-                        fetchContact={fetchContact}
+                        fetchContact={searchContact}
                         isResult={!!contacts.length}
                         delay={400}
                     />

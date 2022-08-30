@@ -3,7 +3,11 @@ import { ContactActionTypes } from './contactActionTypes';
 
 const initialState: IContactState = {
     isFetching: false,
-    contacts: []
+    contacts: [],
+    totalCount: 0,
+    perPage: 3,
+    current: 1,
+    countPages: 5
 }
 
 export default function contactsReducer(
@@ -52,6 +56,18 @@ export default function contactsReducer(
             return {
                 ...state,
                 contacts: updatedContacts
+            }
+
+        case ContactActionTypes.SET_TOTAL_PAGE:
+            return {
+                ...state,
+                totalCount: action.total
+            }
+        
+        case ContactActionTypes.SET_CURRENT_PAGE:
+            return {
+                ...state,
+                current: action.page
             }
 
         default: 
