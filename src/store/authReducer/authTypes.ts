@@ -13,47 +13,13 @@ export interface IAuthState {
   isRegister: boolean
 }
 
-export type AuthRequestAction = {
-  type: ActionTypes.LOGIN_REQUEST
-}
-
-export type AuthSuccessAction = {
-  type: ActionTypes.LOGIN_SUCCESS
-  payload: IUser
-  token: string
-}
-
-export type AuthErrorAction = {
-  type: ActionTypes.LOGIN_FAILURE
-}
-
-export type AuthSetTokenAction = {
-  type: ActionTypes.SET_TOKEN
-  token: string
-}
-
-export type AuthSignoutAction = {
-  type: ActionTypes.SIGNOUT_SUCCESS
-}
-
-export type AuthRegisterRequestAction = {
-  type: ActionTypes.REGISTER_REQUEST
-}
-
-export type AuthRegisterSuccessAction = {
-  type: ActionTypes.REGISTER_SUCCESS
-}
-
-export type AuthRegisterErrorAction = {
-  type: ActionTypes.REGISTER_FAILURE
-}
-
-export type AuthSetIsRegisteredAction = {
-  type: ActionTypes.SET_IS_REGISTERED
-  isRegistered: boolean
-}
-
 export type AuthAction =
-  | AuthRequestAction | AuthSuccessAction | AuthErrorAction
-  | AuthSetTokenAction | AuthSignoutAction
-  | AuthRegisterRequestAction | AuthRegisterSuccessAction | AuthRegisterErrorAction | AuthSetIsRegisteredAction
+  | { type: ActionTypes.LOGIN_REQUEST }
+  | { type: ActionTypes.LOGIN_SUCCESS, payload: IUser, token: string }
+  | { type: ActionTypes.LOGIN_FAILURE }
+  | { type: ActionTypes.SET_TOKEN, token: string }
+  | { type: ActionTypes.SIGNOUT_SUCCESS }
+  | { type: ActionTypes.REGISTER_REQUEST }
+  | { type: ActionTypes.REGISTER_SUCCESS }
+  | { type: ActionTypes.REGISTER_FAILURE }
+  | { type: ActionTypes.SET_IS_REGISTERED, isRegistered: boolean }

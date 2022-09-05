@@ -16,49 +16,12 @@ export interface IContactState {
   countPages: number
 }
 
-export type ContactState = {
-  isFetching: boolean
-  contacts: Array<IContact>
-}
-
-export type FetchContactRequestAction = {
-  type: ContactActionTypes.FETCH_CONTACT_REQUEST
-}
-
-export type FetchContactSuccessAction = {
-  type: ContactActionTypes.FETCH_CONTACT_SUCCESS
-  contacts: IContact[]
-}
-
-export type FetchContactFailureAction = {
-  type: ContactActionTypes.FETCH_CONTACT_FAILURE
-}
-
-export type ContactAddAction = {
-  type: ContactActionTypes.CONTACT_ADD
-  contact: IContact
-}
-
-export type ContactUpdateAction = {
-  type: ContactActionTypes.CONTACT_UPDATE
-  contact: IContact
-}
-
-export type ContactDeleteAction = {
-  type: ContactActionTypes.CONTACT_DELETE
-  contact: IContact
-}
-
-export type ContactSetTotalAction = {
-  type: ContactActionTypes.SET_TOTAL_PAGE
-  total: number
-}
-
-export type ContactSetCurrentPageAction = {
-  type: ContactActionTypes.SET_CURRENT_PAGE
-  page: number
-}
-
 export type ContactAction =
-  | FetchContactRequestAction | FetchContactSuccessAction | FetchContactFailureAction
-  | ContactAddAction | ContactUpdateAction | ContactDeleteAction | ContactSetTotalAction | ContactSetCurrentPageAction
+  | { type: ContactActionTypes.FETCH_CONTACT_REQUEST }
+  | { type: ContactActionTypes.FETCH_CONTACT_SUCCESS, contacts: IContact[] }
+  | { type: ContactActionTypes.FETCH_CONTACT_FAILURE }
+  | { type: ContactActionTypes.CONTACT_ADD, contact: IContact }
+  | { type: ContactActionTypes.CONTACT_UPDATE, contact: IContact }
+  | { type: ContactActionTypes.CONTACT_DELETE, contact: IContact }
+  | { type: ContactActionTypes.SET_TOTAL_PAGE, total: number }
+  | { type: ContactActionTypes.SET_CURRENT_PAGE, page: number }
