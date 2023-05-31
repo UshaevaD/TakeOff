@@ -13,6 +13,7 @@ const Header: React.FC = () => {
                 <Link className={s.headerMainLink} to="/contacts">Contacts</Link>
                 <Link onClick={signOutUser} to="/">Sing Out</Link>
             </div>
+            Test
         </header>
     )
 } 
