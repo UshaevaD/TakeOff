@@ -12,9 +12,6 @@ export const usePagination = (
         if (totalPageCount <= count) {
             return Array.from({ length: totalPageCount }, (_, index) => ++index)
         }
-
-
-        //test
     
         let half = Math.trunc(count / 2)
         let start = Math.max(current - half, 1)
